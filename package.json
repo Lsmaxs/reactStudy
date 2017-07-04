@@ -1,0 +1,33 @@
+{
+  "name": "reactStudy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npm-run-all clean webpack:dev",
+    "clean": "rimraf dist",
+    "webpack:dev": "webpack  --config webpack.dev.config.js  --color --progress"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lsmaxs/reactStudy.git"
+  },
+  "author": "Lsmaxs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lsmaxs/reactStudy/issues"
+  },
+  "homepage": "https://github.com/Lsmaxs/reactStudy#readme",
+  "devDependencies": {
+    "html-webpack-plugin": "^2.29.0",
+    "npm-run-all": "^4.0.2",
+    "webpack": "^3.0.0",
+    "webpack-dev-server": "^2.5.0"
+  },
+  "dependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.5",
+    "react-router": "^4.1.1"
+  }
+}
