@@ -1,15 +1,29 @@
 import Library from './library';
 import React from  "react";
-import { render } from  "react-dom";
+import ReactDOM  from  "react-dom";
 import "./test.css"
+import {AppContainer} from 'react-hot-loader';
+
+const mountNode = document.getElementById("app");
+const renders = (Component) => {
+    ReactDOM.render((
+        <AppContainer>
+            <Component/>
+        </AppContainer>
+    ), mountNode);
+};
+renders(Library)
 
 
-
-render(<Library />,
-    document.getElementById('app')
-);
 if (module.hot) {
-    module.hot.accept('./library', function() {
-        render(<Library />,document.getElementById("root"));
+    console.log(ReactDOM);
+    module.hot.accept('./library', (err)=> {
+        if (err) {
+            console.log(err);
+        }
+        const NextApp = require('./library').default;
+        // 从DOM 中移除已经挂载的 React 组件 然后重装
+        ReactDOM.unmountComponentAtNode(mountNode);
+        renders(NextApp);
     })
 }

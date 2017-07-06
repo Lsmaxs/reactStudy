@@ -14,6 +14,7 @@ function resolve(dir) {
 module.exports = {
     entry:{
         index:[
+            'react-hot-loader/patch',
             'webpack/hot/only-dev-server',
             resolve("src/index.js")
         ]
@@ -38,9 +39,10 @@ module.exports = {
                     }],
                     use: [{
                         loader: 'css-loader',
-                        // options: {
-                        //     modules: true
-                        // },
+                        options: {
+                            modules: true,
+                            localIdentName: '[name]__[local]--[hash:base64:5]',
+                        },
                     }, {
                         loader: 'postcss-loader',
                     }]
@@ -50,7 +52,12 @@ module.exports = {
                 include:/src/,
                 use:ExtractTextP.extract({
                     fallback:"style-loader",
-                    use:['css-loader','sass-loader']
+                    use:[{ loader:'css-loader'},
+                        {loader:'postcss-loader',
+                            options:{
+                                parser:"postcss-scss"
+                            }
+                        }]
                 })
             },{
                 test:/\.(png|jpg|svg|gif|jpeg|bmp)$/i,
@@ -94,16 +101,17 @@ module.exports = {
         compress: true,
         port:8011,
         hot: true,
-        noInfo: true,
-        inline: true,
+        noInfo: false,
+        // inline: true,
         overlay: {
             errors: true,
             warnings: true,
-        },
+        }
     },
     plugins:[
         new HtmlWebpackP({
-            title:"webpack dome"
+            title:"webpack dome",
+            template:"src/index.html"
         }),
         new ExtractTextP("[name].css"),
         new webpack.HotModuleReplacementPlugin(),
