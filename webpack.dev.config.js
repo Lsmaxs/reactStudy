@@ -113,7 +113,7 @@ module.exports = {
             title:"webpack dome",
             template:"src/index.html"
         }),
-        new ExtractTextP("[name].css"),
+        new ExtractTextP("css/[name].css"),
         new webpack.HotModuleReplacementPlugin(),
         new OpenBrowserP({
             url:"http://localhost:8011"
