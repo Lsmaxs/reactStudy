@@ -1,7 +1,6 @@
 import Library from './library';
 import React from  "react";
-import ReactDOM  from  "react-dom";
-import "./test.css"
+import ReactDOM   from  "react-dom";
 import {AppContainer} from 'react-hot-loader';
 
 const mountNode = document.getElementById("app");
@@ -13,7 +12,6 @@ const renders = (Component) => {
     ), mountNode);
 };
 renders(Library)
-
 
 if (module.hot) {
     console.log(ReactDOM);
