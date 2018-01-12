@@ -1,7 +1,12 @@
-import Library from './library';
+import App from './App';
 import React from  "react";
 import ReactDOM   from  "react-dom";
 import {AppContainer} from 'react-hot-loader';
+
+/*const FastClick = require('fastclick')
+
+//解决移动端300毫秒延迟
+FastClick.attach(document.body)*/
 
 const mountNode = document.getElementById("app");
 const renders = (Component) => {
@@ -11,17 +16,13 @@ const renders = (Component) => {
         </AppContainer>
     ), mountNode);
 };
-renders(Library)
+renders(App)
 
 if (module.hot) {
-    console.log(ReactDOM);
-    module.hot.accept('./library', (err)=> {
-        if (err) {
-            console.log(err);
-        }
-        const NextApp = require('./library').default;
-        // 从DOM 中移除已经挂载的 React 组件 然后重装
-        ReactDOM.unmountComponentAtNode(mountNode);
+    module.hot.accept('./App', ()=> {
+        const NextApp = require('./App').default;
+        /*// 从DOM 中移除已经挂载的 React 组件 然后重装
+        ReactDOM.unmountComponentAtNode(mountNode);*/
         renders(NextApp);
     })
 }
